@@ -1,6 +1,7 @@
 (function() {
     "use strict";
 
+    /** dimensions: { h, w, margin: { top, left, bottom, right}, view: { h, w } */
     var prepareDimensions = function () {
         var dimensions = {
             h: 500, w: 600,
@@ -16,6 +17,7 @@
         return dimensions;
     };
 
+    /** generates some random data points: n * {id, x, y, w, hsl} */
     var prepareData = function() {
         return _.chain()
             .range(900)
@@ -25,14 +27,14 @@
                     x: _.random(0, 100),
                     y: _.random(0, 100),
                     w: _.random(0, 10),
-                    hsl: d3.hsl(_.random(360), 0.7, 0.7)
+                    hsl: d3.hsl(_.random(360), 1, 0.7)
                 };
             })
             .value();
     };
 
+    /** given dimensions will create scales for: {x, y} */
     var prepareScales = function(dimensions) {
-
         return {
             x: d3.scale.linear().domain([0, 100]).range([0, dimensions.view.w]),
             y: d3.scale.linear().domain([0, 100]).range([0, dimensions.view.h])
@@ -40,6 +42,7 @@
 
     };
 
+    /** templates for { scale(s), translate(dx, dy) */
     var prepareTemplates = function() {
         var templateFns = {
             translate: _.template("translate(<%=dx%>,<%=dy%>) "),
@@ -66,14 +69,15 @@
     var scales = prepareScales(dimensions);
     var templates = prepareTemplates();
 
-    window.stuff = { scales: scales, data: data, dimensions: dimensions, templates: templates };
+    // uncomment if you want to poke around a bit
+    // window.stuff = { scales: scales, data: data, dimensions: dimensions, templates: templates };
 
     var zoomed = function() {
         svg.attr("transform", templates.translate(d3.event.translate) + templates.scale(d3.event.scale));
     };
 
     var zoom = d3.behavior.zoom()
-        .scaleExtent([0.3, 5])
+        .scaleExtent([0.3, 6])
         .on("zoom", zoomed);
 
     var svg = d3.select("#holder").append("svg")
@@ -85,7 +89,7 @@
         .append("g")
         .attr("transform", function() {
             return templates.translate(dimensions.margin.left, dimensions.margin.top)
-        })
+        });
 
 
     svg.selectAll(".wibble")
