@@ -1,0 +1,41 @@
+<html>
+<head>
+    <link rel="stylesheet"
+          href="scss/pouch.css">
+
+    <script src="bower_components/pouchdb/dist/pouchdb.js"></script>
+    <script src="bower_components/angularjs/angular.js"></script>
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="app/secrets.js"></script>
+    <script src="app/pouch-client.js"></script>
+</head>
+<body>
+
+    <h1>Pouch Client</h1>
+
+    <div ng-app="PouchApp"
+         ng-view
+         ng-controller="PouchCtrl">
+
+        <h3>Todos ({{data.todoDB.todos.length}})</h3>
+
+        <ul>
+            <li ng-repeat="todo in data.todoDB.todos">
+                {{todo.title}}
+            </li>
+        </ul>
+
+        <input type="text"
+               ng-model="todoText"
+               placeholder="new todo....">
+
+        <button ng-click="addTodo(todoText)">
+            Add
+        </button>
+
+        <hr/>
+
+        <button ng-click="nukeList()">Nuke list</button>
+    </div>
+</body>
+</html>

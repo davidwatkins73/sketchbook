@@ -1,0 +1,20 @@
+{
+  "name": "pouch-client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/davidwatkins73/sketchbook",
+  "authors": [
+    "Dave Watkins <davidwatkins73@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pouchdb": "~3.2.0",
+    "lodash": "~2.4.1"
+  }
+}
