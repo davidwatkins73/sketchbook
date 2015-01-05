@@ -1,33 +1,34 @@
 (function() {
     console.log("go");
 
+    var log = function(topic) { return function(x) { console.log(topic, arguments); }; };
+
+
     var PouchCtrls = {
         pouchCtrl : function($scope, TodoDB) {
-            console.log("PouchCtrl init");
+
+            var logger = log("PouchCtrl");
+
+            logger("init");
 
             var data  = {
                 todoDB: TodoDB
             };
 
-            //TodoDB.getAll().then(function(todos) {
-            //    console.log("todos", todos);
-            //    data.todos = todos.rows;
-            //    $scope.$digest();
-            //});
-
             var addTodo = function(todoText) {
                 TodoDB.addTodo(todoText).then(function(m) {
-                    console.log("OK", m);
+                   logger("added");
                 });
             };
 
+            var deleteTodo = function(todo) {
+                logger("Delete requested ", todo);
+                TodoDB.deleteTodo(todo);
+            }
+
             $scope.data = data;
             $scope.addTodo = addTodo;
-
-            $scope.$watchCollection("data.todoDB.todos.length", function() {
-                console.log("watchCollectionA", arguments);
-            });
-
+            $scope.deleteTodo = deleteTodo;
         }
     };
 
@@ -38,7 +39,7 @@
 
             var todoMap = {};
 
-            var log = function(topic) { return function(x) { console.log(topic, x); }; };
+            var logger = log("TodoDB");
 
             var db = new PouchDB('todos');
 
@@ -47,7 +48,6 @@
             };
 
             var handleInsert = function(doc) {
-                //log("handle-insert")(doc);
                 todos.push(doc);
             };
 
@@ -74,11 +74,15 @@
 
             var notify = _.debounce(notifyNow, 100);
 
+            logger("starting change listener");
 
             db.changes({
                 //since: "now",
                 live: true
             }).on('change', handleChange);
+
+
+            logger("starting sync task");
 
             db.sync("http://localhost:5984/todos", { live: true });
             //    .on('change', log("sync-change"))
@@ -95,6 +99,9 @@
                         completed: false
                     };
                     return db.put(todo);
+                },
+                deleteTodo: function(todo) {
+                    return db.remove(todo);
                 }
            };
         })
