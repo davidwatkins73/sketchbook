@@ -1,8 +1,5 @@
-var hello = function() {
-    return (
-        <h1>Hello</h1>
-    );
-}
+var React = require("react");
+var _ = require("lodash");
 
 var people = [
     {
@@ -28,7 +25,7 @@ var people = [
 ];
 
 var Card = React.createClass({
-    render : function() {
+    render() {
         return (
             <div>
                 <h1>Hello {this.props.name}</h1>
@@ -42,19 +39,19 @@ var Card = React.createClass({
 });
 
 var App = React.createClass({
-    getInitialState : function() {
-        return { people : people };
+    getInitialState() {
+        return { people : this.props.people.splice(0) };
     },
-    deletePerson : function(p) {
+    deletePerson(p) {
         this.state.people.splice(this.state.people.indexOf(p), 1);
         this.setState({people: this.state.people});
     },
-    render : function() {
+    render() {
         var self = this;
         return (
             <div>
                 {
-                    this.state.people.map(function(p) {
+                    this.state.people.map(p => {
                         return ( <Card onDelete={self.deletePerson.bind(null, p)} name={p.name} avatar={p.avatar}></Card> );
                     })
                 }
@@ -63,6 +60,8 @@ var App = React.createClass({
     }
 });
 
+React.render(<App people={_.clone(people)}></App>, document.getElementById("example"));
+React.render(<App people={_.clone(people)}></App>, document.getElementById("example2"))
 
-
-React.render(<App></App>, document.body);
+window._ = _;
+window.z = people;
