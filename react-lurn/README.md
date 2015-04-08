@@ -7,6 +7,12 @@ Learning about:
 - ES6  (using 6to5)
 
 
+Setup using:
+    npm install
+    npm run watch 
+
+
+
 Installed using:
     
      npm install react browserify watchify 6to5ify  --save-dev -g

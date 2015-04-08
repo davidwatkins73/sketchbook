@@ -1,5 +1,19 @@
 var React = require("react");
+var Reflux = require("reflux");
 var _ = require("lodash");
+
+var store = Reflux.createStore({
+    data: { message: 0 },
+    init() {
+        setInterval(() => {
+            this.data.message++;
+            this.trigger(this.data);
+        }, 1000);
+    },
+    getInitialState() {
+        return this.data;
+    }
+});
 
 var people = [
     {
@@ -38,6 +52,15 @@ var Card = React.createClass({
     }
 });
 
+var Counter = React.createClass({
+    mixins: [Reflux.connect(store)],
+    render() {
+        return (
+            <h1>{this.state.message}</h1>
+        )
+    }
+});
+
 var App = React.createClass({
     getInitialState() {
         return { people : this.props.people.splice(0) };
@@ -61,4 +84,4 @@ var App = React.createClass({
 });
 
 React.render(<App people={_.clone(people)}></App>, document.getElementById("example"));
-React.render(<App people={_.clone(people)}></App>, document.getElementById("example2"))
+React.render(<Counter></Counter>, document.getElementById("example2"))
