@@ -1,0 +1,70 @@
+/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/bin/java -Didea.launcher.port=7532 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 14.app/Contents/bin" -Dfile.encoding=UTF-8 -classpath "/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/lib/tools.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/htmlconverter.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Users/dwatkins/dev/repos/projects/sketchbook/cardread/target/classes:/Users/dwatkins/.m2/repository/org/usb4java/usb4java-javax/1.2.0/usb4java-javax-1.2.0.jar:/Users/dwatkins/.m2/repository/javax/usb/usb-api/1.0.2/usb-api-1.0.2.jar:/Users/dwatkins/.m2/repository/org/apache/commons/commons-lang3/3.2.1/commons-lang3-3.2.1.jar:/Users/dwatkins/.m2/repository/org/usb4java/usb4java/1.2.0/usb4java-1.2.0.jar:/Users/dwatkins/.m2/repository/org/usb4java/libusb4java/1.2.0/libusb4java-1.2.0-linux-x86.jar:/Users/dwatkins/.m2/repository/org/usb4java/libusb4java/1.2.0/libusb4java-1.2.0-linux-x86_64.jar:/Users/dwatkins/.m2/repository/org/usb4java/libusb4java/1.2.0/libusb4java-1.2.0-linux-arm.jar:/Users/dwatkins/.m2/repository/org/usb4java/libusb4java/1.2.0/libusb4java-1.2.0-windows-x86.jar:/Users/dwatkins/.m2/repository/org/usb4java/libusb4java/1.2.0/libusb4java-1.2.0-windows-x86_64.jar:/Users/dwatkins/.m2/repository/org/usb4java/libusb4java/1.2.0/libusb4java-1.2.0-osx-x86.jar:/Users/dwatkins/.m2/repository/org/usb4java/libusb4java/1.2.0/libusb4java-1.2.0-osx-x86_64.jar:/Applications/IntelliJ IDEA 14.app/Contents/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain org.hale.sketchbook.rfid.cardread.DumpDevices
+USB Service Implementation: usb4java
+Implementation version: 1.2.0
+Service API version: 1.0.2
+
+
+Bus 020 Device 005: ID 0403:6001
+Connected to port: 1
+Parent: Bus 020 Device 129: ID 05ac:8007
+Device Descriptor:
+  bLength                 18
+  bDescriptorType          1
+  bcdUSB                2.00
+  bDeviceClass             0 Per Interface
+  bDeviceSubClass          0
+  bDeviceProtocol          0
+  bMaxPacketSize0          8
+  idVendor            0x0403
+  idProduct           0x6001
+  bcdDevice             6.00
+  iManufacturer            1
+  iProduct                 2
+  iSerial                  3
+  bNumConfigurations       1
+
+Configuration Descriptor:
+  bLength                  9
+  bDescriptorType          2
+  wTotalLength            32
+  bNumInterfaces           1
+  bConfigurationValue      1
+  iConfiguration           0
+  bmAttributes          0xa0
+    (Bus Powered)
+    Remote Wakeup
+  bMaxPower               90mA
+
+Interface Descriptor:
+  bLength                  9
+  bDescriptorType          4
+  bInterfaceNumber         0
+  bAlternateSetting        0
+  bNumEndpoints            2
+  bInterfaceClass        255 Vendor-specific
+  bInterfaceSubClass     255
+  bInterfaceProtocol     255
+  iInterface               2
+
+Endpoint Descriptor:
+  bLength                  7
+  bDescriptorType          5
+  bEndpointAddress      0x02  EP 2 OUT
+  bmAttributes             2
+    Transfer Type             Bulk
+    Synch Type                None
+    Usage Type                Data
+  wMaxPacketSize          64
+  bInterval                0
+
+Endpoint Descriptor:
+  bLength                  7
+  bDescriptorType          5
+  bEndpointAddress      0x81  EP 1 IN
+  bmAttributes             2
+    Transfer Type             Bulk
+    Synch Type                None
+    Usage Type                Data
+  wMaxPacketSize          64
+  bInterval                0
+

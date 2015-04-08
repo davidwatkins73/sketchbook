@@ -14,26 +14,13 @@ img1.onload = function() {
     setInterval(loop, 1000 / 30);
 };
 
-var frames = {
-    left: 0,
-    right: 32,
-    med: 0,
-    high: 32,
-    low: 64
-};
 
-var player = {
-    x: 100,
-    y: 100,
-    dy: 0,
-    dx: 0,
-    direction: "left",
-    frame : [frames.left, frames.med]
-};
+var world = {
+    player: new Bee()
+}
 
-$(document).bind("keydown", "w", function() { flap(player); });
-$(document).bind("keydown", "d", function(e) { turnRight(player); e.stopPropagation(); });
-$(document).bind("keydown", "a", function(e) { turnLeft(player); e.stopPropagation(); });
+$(document).bind("keydown", "w", function() { world.player.flap(); });
+
 
 var leftFrames = {
     med: 0,
@@ -42,26 +29,18 @@ var leftFrames = {
 };
 
 var debug = function(ctx) {
-    var tmpl = "x: <%=x%>, y: <%=y%>, dx: <%=dx%>, dy: <%=Number(dy).toFixed(2)%>";
-    var txt = _.template(tmpl, player);
+    var tmpl = "x: <%=position.x%>, y: <%=position.y%>, dx: <%=heading.dx%>, dy: <%=Number(heading.dy).toFixed(2)%>";
+    var txt = _.template(tmpl, world.player);
     ctx.fillText(txt, 400, 10)
 };
 
 var draw = function(ctx) {
-    drawPlayer(ctx, player);
-};
-
-var drawPlayer = function(ctx, player) {
-    drawBee(ctx, player.x, player.y, player.frame);
-};
-
-var drawBee = function(ctx, x, y, frame) {
-    ctx.drawImage(img1, frame[0], frame[1],  32, 32, x, y, 32, 32);
+    world.player.draw(ctx);
 };
 
 var loop = function() {
     ctx.clearRect ( 0 , 0 , canvas.width, canvas.height );
-    update(player);
+    update(world.player);
     draw(ctx);
     debug(ctx);
 };
@@ -69,37 +48,35 @@ var loop = function() {
 
 var ctr = 0;
 
-var update = function(p) {
-    ctr ++;
-
-    var keyFrames = [ frames.med, frames.high, frames.med, frames.low];
-    p.frame = [
-        keyFrames[ctr % keyFrames.length],
-        frames.left
-    ];
-    console.log(p.frame);
-    if (ctr > keyFrames.length * 10) ctr = 0;
-
-
-    p.x += p.dx;
-    p.y += p.dy;
-    p.dy += 0.3;
-    if (Math.abs(p.dx) > 0.5) {
-        p.dx += (p.direction = 'left' ? 0.03 : -0.03);
+var applyScreenConstraints = function(player) {
+    var position = player.position;
+    var nx = position.x;
+    var ny = position.y;
+    if (position.x > canvas.width) nx = 0;
+    if (position.x < -32) nx = canvas.width;
+    if (position.y > canvas.height) {
+        ny = canvas.height;
+    }
+    if (position.y < 0) {
+        ny = 0;
+        player.heading = new Vector(player.heading.dx, Math.abs(player.heading.dy * 0.2));
     }
 
-    p.x = Math.round(p.x);
-    p.y = Math.round(p.y);
+    return new Point(nx, ny);
+};
+
+var update = function(p) {
+
+    p.heading = p.heading.apply(vectors.gravity);
+    p.position = p.position.apply(p.heading);
+    p.position = applyScreenConstraints(p);
+    p.position = p.position.round();
 
     // canvas limits
-    if (p.x > canvas.width) p.x = canvas.width;
-    if (p.x < -32) p.x = canvas.width;
-    if (p.y > canvas.height) p.y = canvas.height;
-    if (p.y < 0) p.y = 0;
 
     // speed limits
-    if (p.dy > 10) p.dy = 10;
-    if (p.dy < -10) p.dy = -10;
+
+    p.heading = p.heading.clampY(-10, 10);
 
 };
 
@@ -114,8 +91,7 @@ var turnLeft = function(p) {
 };
 
 var flap = function(p) {
-    p.dy -= 5;
-    p.dx += (p.direction == 'right' ? 0.1 : -0.1);
+    p.heading = p.heading.apply(vectors.flap, true, false);
 };
 
 

@@ -1,0 +1,21 @@
+{
+  "name": "new-router",
+  "version": "0.0.0",
+  "homepage": "https://github.com/davidwatkins73/sketchbook",
+  "authors": [
+    "Dave Watkins <davidwatkins73@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-new-router": "~0.5.3",
+    "angular": "1.4",
+    "angular-material": "~0.8.3"
+  }
+}
