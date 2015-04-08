@@ -9,7 +9,7 @@ Learning about:
 
 Setup using:
     npm install
-    npm run watch 
+    npm run watchc 
 
 
 
