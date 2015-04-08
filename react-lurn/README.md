@@ -9,6 +9,10 @@ Learning about:
 
 Installed using:
     
-    npm install react browserify watchify 6to5ify  --save-dev -g
+     npm install react browserify watchify 6to5ify  --save-dev -g
+     
+For babel
+
+     npm install --global --save-dev babelify
     
     

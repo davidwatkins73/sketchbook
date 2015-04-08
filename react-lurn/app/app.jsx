@@ -1,6 +1,8 @@
 var React = require("react");
 var _ = require("lodash");
 
+console.log("Hello");
+
 var people = [
     {
         "name": "Anderson Turner",

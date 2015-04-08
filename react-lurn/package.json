@@ -11,8 +11,11 @@
     "lodash": "~3.6.0"
   },
   "scripts": {
-    "watch": "watchify -t 6to5ify app/app.jsx -o dist/bundle.js -v"
+    "watch": "watchify app/app.jsx -t babelify -o dist/bundle.js -v"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "~6.0.2"
+  }
 }
