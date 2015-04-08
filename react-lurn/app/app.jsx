@@ -1,8 +1,6 @@
 var React = require("react");
 var _ = require("lodash");
 
-console.log("Hello");
-
 var people = [
     {
         "name": "Anderson Turner",
@@ -64,6 +62,3 @@ var App = React.createClass({
 
 React.render(<App people={_.clone(people)}></App>, document.getElementById("example"));
 React.render(<App people={_.clone(people)}></App>, document.getElementById("example2"))
-
-window._ = _;
-window.z = people;
