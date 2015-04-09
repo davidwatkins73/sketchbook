@@ -3,6 +3,7 @@ var Reflux = require("reflux");
 var request = require("superagent");  // convention is to name this request...
 var PersonCards = require("../people/PersonCards.jsx");
 var Echo = require("../echo/Echo.jsx");
+var RGB = require("../basic/RGB.jsx");
 
 var _ = require("lodash");
 
@@ -89,3 +90,4 @@ React.render(<App people={_.clone(people)}></App>, document.getElementById("exam
 React.render(<Counter></Counter>, document.getElementById("example2"));
 React.render(<PersonCards></PersonCards>, document.getElementById("example3"));
 React.render(<Echo txt="hello"></Echo>, document.getElementById("example4"));
+React.render(<RGB></RGB>, document.getElementById("example5"));
