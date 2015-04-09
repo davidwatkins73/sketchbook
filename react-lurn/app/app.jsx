@@ -49,7 +49,6 @@ var RemoteCard = React.createClass({
 var RemoteCards = React.createClass({
     mixins: [Reflux.connect(remoteStore)],
     render() {
-        console.log("REmoteCards", this.state)
         return (
             <div>
                 <h1>Remote Cards</h1>
@@ -59,7 +58,7 @@ var RemoteCards = React.createClass({
                     })
                 }
             </div>
-        )
+        );
     }
 });
 
@@ -105,7 +104,7 @@ var Counter = React.createClass({
     render() {
         return (
             <h1>{this.state.message}</h1>
-        )
+        );
     }
 });
 
@@ -127,10 +126,10 @@ var App = React.createClass({
                     })
                 }
             </div>
-        )
+        );
     }
 });
 
-React.render(<App people={_.clone(people)}></App>, document.getElementById("example"));
-React.render(<Counter></Counter>, document.getElementById("example2"))
-React.render(<RemoteCards></RemoteCards>, document.getElementById("example3"))
+React.render(<App people={_.clone(people)}></App>, document.getElementById("example1"));
+React.render(<Counter></Counter>, document.getElementById("example2"));
+React.render(<RemoteCards></RemoteCards>, document.getElementById("example3"));
