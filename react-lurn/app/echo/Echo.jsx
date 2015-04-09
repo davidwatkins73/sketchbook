@@ -16,6 +16,5 @@ module.exports = React.createClass({
                 <h1>{this.state.txt}</h1>
             </div>
         );
-
     }
 });
