@@ -1,9 +1,11 @@
-- Switch from 6to5 to Babel
+- Switch from 6to5 to Babel (x)
 - Integrate sass into build 
 - start expanding demo to include
-  - routing
-  - multiple components
-  - async server calls
-  - filtering
-  - error handling etc.
+    - routing
+    - multiple components (x)
+    - async server call (x)
+    - filtering
+    - error handling etc.
+- Unit testing
+    - Jest ?
   

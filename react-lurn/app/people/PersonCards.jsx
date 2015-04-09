@@ -1,7 +1,7 @@
 var React = require("react");
 var Reflux = require("reflux");
 
-var PeopleStore = require("./PersonStore.jsx");
+var PeopleStore = require("./PersonStore.js");
 var PersonCard = require("./PersonCard.jsx");
 
 module.exports =  React.createClass({
