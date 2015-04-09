@@ -13,7 +13,6 @@ Setup using:
     npm test
 
 
-
 Installed using:
     
      npm install react browserify watchify 6to5ify  --save-dev -g

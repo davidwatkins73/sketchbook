@@ -2,6 +2,7 @@ var React = require("react");
 var Reflux = require("reflux");
 var request = require("superagent");  // convention is to name this request...
 var PersonCards = require("../people/PersonCards.jsx");
+var Echo = require("../echo/Echo.jsx");
 
 var _ = require("lodash");
 
@@ -75,13 +76,11 @@ var App = React.createClass({
     render() {
         var self = this;
         return (
-            <div>
-                {
-                    this.state.people.map(p => {
-                        return ( <Card onDelete={self.deletePerson.bind(null, p)} name={p.name} avatar={p.avatar}></Card> );
-                    })
-                }
-            </div>
+            <div> {
+                this.state.people.map(p => {
+                    return ( <Card onDelete={self.deletePerson.bind(null, p)} name={p.name} avatar={p.avatar}></Card> );
+                })
+            } </div>
         );
     }
 });
@@ -89,3 +88,4 @@ var App = React.createClass({
 React.render(<App people={_.clone(people)}></App>, document.getElementById("example1"));
 React.render(<Counter></Counter>, document.getElementById("example2"));
 React.render(<PersonCards></PersonCards>, document.getElementById("example3"));
+React.render(<Echo txt="hello"></Echo>, document.getElementById("example4"));
