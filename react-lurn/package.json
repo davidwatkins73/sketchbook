@@ -10,7 +10,7 @@
     "superagent": "~1.1.0"
   },
   "scripts": {
-    "watch": "watchify app/*.jsx -t babelify -o dist/bundle.js -v"
+    "watch": "watchify app/**/*.jsx -t babelify -o dist/bundle.js -v"
   },
   "author": "",
   "license": "ISC",

@@ -1,6 +1,7 @@
 var React = require("react");
 var Reflux = require("reflux");
 var request = require("superagent");  // convention is to name this request...
+var PersonCards = require("../people/PersonCards.jsx");
 
 var _ = require("lodash");
 
@@ -14,51 +15,6 @@ var store = Reflux.createStore({
     },
     getInitialState() {
         return this.data;
-    }
-});
-
-var remoteStore = Reflux.createStore({
-    data: {people: []},
-    init() {
-        request
-            .get("../api/people.json")
-            .end((err, res) => {
-                this.data.people = res.body;
-                this.trigger(this.data);
-                console.log("kick", this.data)
-            });
-    },
-    getInitialState() {
-        return this.data;
-    }
-});
-
-var RemoteCard = React.createClass({
-    render() {
-        return (
-            <div>
-                <h1>{this.props.name}</h1>
-                <img src={this.props.avatar}/>
-                <span>{this.props.id}</span>
-            </div>
-
-        );
-    }
-});
-
-var RemoteCards = React.createClass({
-    mixins: [Reflux.connect(remoteStore)],
-    render() {
-        return (
-            <div>
-                <h1>Remote Cards</h1>
-                {
-                    this.state.people.map(p => {
-                        return ( <RemoteCard name={p.name} avatar={p.avatar}></RemoteCard> );
-                    })
-                }
-            </div>
-        );
     }
 });
 
@@ -132,4 +88,4 @@ var App = React.createClass({
 
 React.render(<App people={_.clone(people)}></App>, document.getElementById("example1"));
 React.render(<Counter></Counter>, document.getElementById("example2"));
-React.render(<RemoteCards></RemoteCards>, document.getElementById("example3"));
+React.render(<PersonCards></PersonCards>, document.getElementById("example3"));
