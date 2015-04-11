@@ -4,20 +4,26 @@ describe('EchoWidget', function() {
         var React = require('react/addons');
         var Echo = require('../../app/echo/Echo.jsx');
 
-
         var TestUtils = React.addons.TestUtils;
 
-        var echoer = TestUtils.renderIntoDocument(
-            <Echo txt="before" />
-        );
+        var echoer = TestUtils.renderIntoDocument(<Echo txt="before"/>);
 
-        var label = TestUtils.findRenderedDOMComponentWithTag(
-            echoer, 'h1');
+        var label = TestUtils.findRenderedDOMComponentWithTag(echoer, 'h1');
+
         expect(label.getDOMNode().textContent).toEqual('before');
 
         var input = TestUtils.findRenderedDOMComponentWithTag(
             echoer, 'input');
-        TestUtils.Simulate.change(input, "after");
+
+        TestUtils.Simulate.change(input, { target: { value: "after" }});
+
+
+
         expect(label.getDOMNode().textContent).toEqual('after');
+
+        TestUtils.Simulate.change(input, { target: { value: "" }});
+        expect(label.getDOMNode().textContent).toEqual('');
+
     });
 });
+
