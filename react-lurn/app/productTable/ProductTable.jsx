@@ -1,11 +1,17 @@
 var React = require("react");
 var ProductCategoryRow = React.createClass({
+    propTypes : {
+        category : React.PropTypes.string.isRequired
+    },
     render() {
         return (<tr><th colSpan="2">{this.props.category}</th></tr>);
     }
 });
 
 var ProductRow = React.createClass({
+    propTypes : {
+        product : React.PropTypes.object.isRequired
+    },
     render() {
         var name = this.props.product.stocked ?
             this.props.product.name :
@@ -28,6 +34,10 @@ var NoProductsFoundRow = React.createClass({
 });
 
 var ProductTable = React.createClass({
+    propTypes : {
+        products : React.PropTypes.array.isRequired,
+        inStockOnly: React.PropTypes.bool.isRequired
+    },
     render() {
         var rows = [];
         var lastCategory = null;
@@ -61,6 +71,10 @@ var ProductTable = React.createClass({
 });
 
 var SearchBar = React.createClass({
+    propTypes : {
+        filterText : React.PropTypes.string.isRequired,
+        inStockOnly: React.PropTypes.bool.isRequired
+    },
     handleChange() {
         this.props.onUserInput(
             this.refs.filterTextInput.getDOMNode().value,
@@ -89,6 +103,10 @@ var SearchBar = React.createClass({
 });
 
 var FilterableProductTable = React.createClass({
+    propTypes : {
+        products: React.PropTypes.array
+    },
+    
     getInitialState() {
         return {
             filterText: '',
