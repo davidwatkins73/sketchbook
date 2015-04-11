@@ -6,6 +6,7 @@ var Echo = require("../echo/Echo.jsx");
 var RGB = require("../basic/RGB.jsx");
 var Avatar = require("../avatar/Avatar.jsx");
 var ProductTable = require("../productTable/ProductTable.jsx");
+var CheckLink = require("../basic/CheckLink.jsx");
 
 var _ = require("lodash");
 
@@ -95,3 +96,4 @@ React.render(<Echo txt="hello"></Echo>, document.getElementById("example4"));
 React.render(<RGB></RGB>, document.getElementById("example5"));
 React.render(<Avatar username="pwh"></Avatar>, document.getElementById('example6'));
 React.render(<ProductTable.FilterableProductTable products={ProductTable.PRODUCTS} />, document.getElementById("example7"));
+React.render(<CheckLink href="http://www.google.com" title="googly">Go <i>To</i> Google</CheckLink>, document.getElementById("example8"));
