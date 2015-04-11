@@ -35,7 +35,7 @@ var NoProductsFoundRow = React.createClass({
 
 var ProductTable = React.createClass({
     propTypes : {
-        products : React.PropTypes.array.isRequired,
+        products : React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
         inStockOnly: React.PropTypes.bool.isRequired
     },
     render() {
@@ -104,9 +104,9 @@ var SearchBar = React.createClass({
 
 var FilterableProductTable = React.createClass({
     propTypes : {
-        products: React.PropTypes.array
+        products: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
     },
-    
+
     getInitialState() {
         return {
             filterText: '',
@@ -138,7 +138,6 @@ var FilterableProductTable = React.createClass({
         );
     }
 });
-
 
 var PRODUCTS = [
     {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
