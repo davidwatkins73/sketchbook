@@ -5,6 +5,7 @@ var PersonCards = require("../people/PersonCards.jsx");
 var Echo = require("../echo/Echo.jsx");
 var RGB = require("../basic/RGB.jsx");
 var Avatar = require("../avatar/Avatar.jsx");
+var ProductTable = require("../productTable/ProductTable.jsx");
 
 var _ = require("lodash");
 
@@ -87,9 +88,10 @@ var App = React.createClass({
     }
 });
 
-React.render(<App people={_.clone(people)}></App>, document.getElementById("example1"));
-React.render(<Counter></Counter>, document.getElementById("example2"));
-React.render(<PersonCards></PersonCards>, document.getElementById("example3"));
+//React.render(<App people={_.clone(people)}></App>, document.getElementById("example1"));
+//React.render(<Counter></Counter>, document.getElementById("example2"));
+//React.render(<PersonCards></PersonCards>, document.getElementById("example3"));
 React.render(<Echo txt="hello"></Echo>, document.getElementById("example4"));
 React.render(<RGB></RGB>, document.getElementById("example5"));
 React.render(<Avatar username="pwh"></Avatar>, document.getElementById('example6'));
+React.render(<ProductTable.FilterableProductTable products={ProductTable.PRODUCTS} />, document.getElementById("example7"));
