@@ -1,12 +1,12 @@
 var React = require("react");
 var ProductCategoryRow = React.createClass({
-    render: function() {
+    render() {
         return (<tr><th colSpan="2">{this.props.category}</th></tr>);
     }
 });
 
 var ProductRow = React.createClass({
-    render: function() {
+    render() {
         var name = this.props.product.stocked ?
             this.props.product.name :
             <span style={{color: 'red'}}>
@@ -21,8 +21,14 @@ var ProductRow = React.createClass({
     }
 });
 
+var NoProductsFoundRow = React.createClass({
+    render() {
+        return ( <td colspan="2"><i>No products found</i></td> );
+    }
+});
+
 var ProductTable = React.createClass({
-    render: function() {
+    render() {
         var rows = [];
         var lastCategory = null;
         this.props.products.forEach(function(product) {
@@ -35,6 +41,11 @@ var ProductTable = React.createClass({
             rows.push(<ProductRow product={product} key={product.name} />);
             lastCategory = product.category;
         }.bind(this));
+
+        if (rows.length == 0) {
+            rows.push(<NoProductsFoundRow/>);
+        }
+
         return (
             <table>
                 <thead>
@@ -50,13 +61,13 @@ var ProductTable = React.createClass({
 });
 
 var SearchBar = React.createClass({
-    handleChange: function() {
+    handleChange() {
         this.props.onUserInput(
             this.refs.filterTextInput.getDOMNode().value,
             this.refs.inStockOnlyInput.getDOMNode().checked
         );
     },
-    render: function() {
+    render() {
         return (
             <form>
                 <input type="text"
@@ -78,22 +89,21 @@ var SearchBar = React.createClass({
 });
 
 var FilterableProductTable = React.createClass({
-    getInitialState: function() {
+    getInitialState() {
         return {
             filterText: '',
             inStockOnly: false
         };
     },
 
-    handleUserInput: function(filterText, inStockOnly) {
+    handleUserInput(filterText, inStockOnly) {
         this.setState({
             filterText: filterText,
             inStockOnly: inStockOnly
         });
     },
 
-
-    render: function() {
+    render() {
         return (
             <div>
                 <SearchBar
