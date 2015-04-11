@@ -10,3 +10,5 @@ Currently consisting of:
   - v. primitive test project to investigate pouchdb.
 - flounce
   - playing around with the html canvas object.
+- react-lurn
+  - figuring out the basics of the React js framework
