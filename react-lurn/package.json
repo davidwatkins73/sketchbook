@@ -9,8 +9,9 @@
     "reflux": "~0.2.7",
     "superagent": "~1.1.0",
     "showdown": "~0.4.0",
-    "foundation": "~4.2.1-1",
-    "moment": "~2.10.2"
+    "moment": "~2.10.2",
+    "react-bootstrap": "~0.20.3",
+    "bootstrap-sass": "~3.3.4"
   },
   "scripts": {
     "watch": "watchify app/**/*.jsx -t babelify -o dist/bundle.js -v",

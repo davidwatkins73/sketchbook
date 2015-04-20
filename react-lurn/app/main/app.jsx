@@ -8,6 +8,7 @@ var Avatar = require("../avatar/Avatar.jsx");
 var ProductTable = require("../productTable/ProductTable.jsx");
 var CheckLink = require("../basic/CheckLink.jsx");
 var TimeAgo = require("../basic/Timeago.jsx");
+var Reveal = require("../basic/Reveal.jsx");
 
 var _ = require("lodash");
 
@@ -99,4 +100,4 @@ React.render(<RGB></RGB>, document.getElementById("example5"));
 React.render(<Avatar username="pwh"></Avatar>, document.getElementById('example6'));
 React.render(<ProductTable.FilterableProductTable products={ProductTable.PRODUCTS} />, document.getElementById("example7"));
 //React.render(<CheckLink href="http://www.google.com" title="googly">Go <i>To</i> Google</CheckLink>, document.getElementById("example8"));
-React.render(<TimeAgo date={d}></TimeAgo>, document.getElementById("example8"));
+React.render(<Reveal text="Toggle it" hide="false"><TimeAgo date={d}></TimeAgo></Reveal>, document.getElementById("example8"));

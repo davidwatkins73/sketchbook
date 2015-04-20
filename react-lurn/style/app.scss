@@ -1,3 +1,18 @@
-@import "../node_modules/foundation/scss/normalize";
-@import "../node_modules/foundation/scss/foundation";
+@import "bourbon/bourbon";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
 
+.visible {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.muted {
+  color: lightgray;
+}
+
+.no-text-select {
+  user-select: none;
+}
