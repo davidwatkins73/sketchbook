@@ -57,7 +57,7 @@ var ProductTable = React.createClass({
         }
 
         return (
-            <table className="table table-condensed">
+            <table width="100%">
                 <thead>
                 <tr>
                     <th>Name</th>
