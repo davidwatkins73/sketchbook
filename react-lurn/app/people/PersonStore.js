@@ -9,7 +9,6 @@ module.exports = Reflux.createStore({
             .end((err, res) => {
                 this.data.people = res.body;
                 this.trigger(this.data);
-                console.log("kick", this.data)
             });
     },
     getInitialState() {

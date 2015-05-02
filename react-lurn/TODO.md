@@ -4,4 +4,3 @@
     - error handling etc.
 - Unit testing
     - Jest ?
-  

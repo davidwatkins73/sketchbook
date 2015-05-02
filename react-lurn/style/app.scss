@@ -1,4 +1,8 @@
 @import "bourbon/bourbon";
+
+
+$navbar-default-bg: #fff5a3;
+
 @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
 
 .visible {
@@ -11,8 +15,23 @@
 
 .muted {
   color: lightgray;
-}
+}§
 
 .no-text-select {
   user-select: none;
 }
+
+
+body {
+  font-family: "Helvetica Neue", Arial;
+  font-weight: 200;
+}
+
+a {
+  color: hsl(200, 50%, 50%);
+}
+
+a.active {
+  color: hsl(20, 50%, 50%);
+}
+
