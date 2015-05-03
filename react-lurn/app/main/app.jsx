@@ -2,7 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 var { Alert, Col, DropdownButton, Grid, MenuItem, Nav, Navbar, Panel, Row } = require('react-bootstrap');
 var { NavItemLink } = require("react-router-bootstrap");
-var { Route, DefaultRoute, RouteHandler, Link } = Router;
+var { DefaultRoute, Link, NotFoundRoute, Redirect, Route, RouteHandler } = Router;
 
 var _ = require('lodash');
 
@@ -100,16 +100,27 @@ var States = React.createClass({
                 <Col md={8}>
                     <RouteHandler/>
                 </Col>
-            </Row>);
+            </Row>
+        );
     }
-})
+});
+
+var NotFound = React.createClass({
+    render() {
+        return (
+            <Alert bsStyle='warning'>Not Found</Alert>
+        );
+    }
+});
 
 var routes = (
     <Route handler={App}>
-        <DefaultRoute handler={Index}/>
+        <DefaultRoute handler={Index} />
         <Route name='states' path='states' handler={States}>
-            <Route name='state' path="state/:abbr" handler={State}/>
+            <Route name='state' path="state/:abbr" handler={State} />
         </Route>
+        <NotFoundRoute handler={NotFound} />
+        <Redirect from="places" to="states" />
     </Route>
 );
 
