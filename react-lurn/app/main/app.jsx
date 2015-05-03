@@ -1,30 +1,12 @@
 var React = require('react');
 var Router = require('react-router');
-var { Alert, Col, DropdownButton, Grid, MenuItem, Nav, Navbar, Panel, Row } = require('react-bootstrap');
-var { NavItemLink } = require("react-router-bootstrap");
+var { Alert, Col, Grid, Panel, Row } = require('react-bootstrap');
 var { DefaultRoute, Link, NotFoundRoute, Redirect, Route, RouteHandler } = Router;
 
-var _ = require('lodash');
+var NavigationHeader = require('./NavigationHeader.jsx');
+var NotFound = require("./NotFound.jsx");
 
-var NavigationHeader = React.createClass({
-    render() {
-        return (
-            <Navbar staticTop brand={<a href="#">Project X</a>}>
-                <Nav>
-                    <NavItemLink eventKey={1} to='/'>Widgets</NavItemLink>
-                    <NavItemLink eventKey={2} to='states'>States</NavItemLink>
-                    <DropdownButton eventKey={3} title='Stuff'>
-                        <MenuItem eventKey='1'>Action</MenuItem>
-                        <MenuItem eventKey='2'>Another action</MenuItem>
-                        <MenuItem eventKey='3'>Something else here</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey='4'>Separated link</MenuItem>
-                    </DropdownButton>
-                </Nav>
-            </Navbar>
-        );
-    }
-});
+var _ = require('lodash');
 
 var App = React.createClass({
     render() {
@@ -101,14 +83,6 @@ var States = React.createClass({
                     <RouteHandler/>
                 </Col>
             </Row>
-        );
-    }
-});
-
-var NotFound = React.createClass({
-    render() {
-        return (
-            <Alert bsStyle='warning'>Not Found</Alert>
         );
     }
 });
