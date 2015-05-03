@@ -1,7 +1,9 @@
 var React = require('react');
 var Router = require('react-router');
-var { Alert, Col, DropdownButton, Grid, MenuItem, Nav, Navbar, NavItem, NavItemLink, Panel, Row } = require('react-bootstrap');
+var { Alert, Col, DropdownButton, Grid, MenuItem, Nav, Navbar, Panel, Row } = require('react-bootstrap');
+var { NavItemLink } = require("react-router-bootstrap");
 var { Route, DefaultRoute, RouteHandler, Link } = Router;
+
 var _ = require('lodash');
 
 var NavigationHeader = React.createClass({
@@ -9,8 +11,8 @@ var NavigationHeader = React.createClass({
         return (
             <Navbar staticTop brand={<a href="#">Project X</a>}>
                 <Nav>
-                    <NavItem eventKey={1} href='#'>Widgets</NavItem>
-                    <NavItem eventKey={2} href='#/states'>States</NavItem>
+                    <NavItemLink eventKey={1} to='/'>Widgets</NavItemLink>
+                    <NavItemLink eventKey={2} to='states'>States</NavItemLink>
                     <DropdownButton eventKey={3} title='Stuff'>
                         <MenuItem eventKey='1'>Action</MenuItem>
                         <MenuItem eventKey='2'>Another action</MenuItem>
