@@ -1,6 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
-var { Alert, Col, Grid, Panel, Row } = require('react-bootstrap');
+var { Alert, Button, Col, Grid, Jumbotron, Panel, Row } = require('react-bootstrap');
 var { DefaultRoute, Link, NotFoundRoute, Redirect, Route, RouteHandler } = Router;
 
 var NavigationHeader = require('./NavigationHeader.jsx');
@@ -10,7 +10,6 @@ var _ = require('lodash');
 
 var App = React.createClass({
     render() {
-
         return (
             <Grid className="App">
                 <NavigationHeader/>
@@ -21,6 +20,21 @@ var App = React.createClass({
 });
 
 var Index = React.createClass({
+    render() {
+        return (
+            <Jumbotron>
+                <h1>Hello, world!</h1>
+                <p>This is a simple hero unit, a simple jumbotron-style
+                    component for calling extra attention to featured content or information.</p>
+                <p>
+                    <Button bsStyle='primary'>Learn more</Button>
+                </p>
+            </Jumbotron>
+        );
+    }
+});
+
+var StateIndex = React.createClass({
     hello() {
         alert("Hello");
     },
@@ -33,16 +47,20 @@ var Index = React.createClass({
     }
 });
 
-var State = React.createClass({
+var StatesHeader = (
+        <div>
+            <span>States</span>
+            <Button bsSize='xsmall' className='pull-right'>hello</Button>
+        </div>
+);
 
+var State = React.createClass({
     contextTypes: {
         router: React.PropTypes.func
     },
-
     imageUrl(name) {
-        return "http://www.50states.com/maps/" + underscore(name) + ".gif";
+        return "http://www.50states.com/maps/" + _.snakeCase(name) + ".gif";
     },
-
     render() {
         var unitedState = findState(this.context.router.getCurrentParams().abbr);
         return (
@@ -72,14 +90,14 @@ var States = React.createClass({
         });
         return (
             <Row>
-                <Col md={4}>
-                    <Panel header='All States'>
+                <Col sm={4}>
+                    <Panel header={StatesHeader}>
                         <ul className='list-unstyled'>
                             {links}
                         </ul>
                     </Panel>
                 </Col>
-                <Col md={8}>
+                <Col sm={8}>
                     <RouteHandler/>
                 </Col>
             </Row>
@@ -87,13 +105,18 @@ var States = React.createClass({
     }
 });
 
+var StatesRoutes = (
+    <Route name='states' path='states' handler={States}>
+        <DefaultRoute handler={StateIndex} />
+        <Route name='state' path="state/:abbr" handler={State} />
+    </Route>
+);
+
 var routes = (
     <Route handler={App}>
         <DefaultRoute handler={Index} />
-        <Route name='states' path='states' handler={States}>
-            <Route name='state' path="state/:abbr" handler={State} />
-        </Route>
         <NotFoundRoute handler={NotFound} />
+        {StatesRoutes}
         <Redirect from="places" to="states" />
     </Route>
 );
@@ -163,8 +186,4 @@ function findStates() {
         { abbr: "WI", name: "Wisconsin"},
         { abbr: "WY", name: "Wyoming"}
     ];
-}
-
-function underscore(str) {
-    return str.toLowerCase().replace(/ /, '_');
 }
