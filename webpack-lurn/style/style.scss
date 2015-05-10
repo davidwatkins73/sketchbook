@@ -1,3 +1,41 @@
+$navbar-default-bg: #fff5a3;
+$icon-font-path: "../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+
+
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
+
+.visible {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.muted {
+    color: #e1e1e1;
+}§
+
+ .no-text-select {
+     user-select: none;
+ }
+
+
 body {
-    background: lightyellow;
+    font-family: "Helvetica Neue", Arial;
+    font-weight: 200;
+}
+
+a {
+    color: hsl(200, 50%, 50%);
+}
+
+a.active {
+    color: hsl(20, 50%, 50%);
+}
+
+.panel-heading-input {
+    height: 18px;
+    font-size: 14px;
+    line-height: 18px;
 }
