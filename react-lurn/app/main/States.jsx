@@ -1,5 +1,5 @@
 var React = require('react');
-var { Alert, Button, Col, Panel, Row } = require('react-bootstrap');
+var { Alert, Button, Col, Input, Panel, Row } = require('react-bootstrap');
 var { DefaultRoute, Link, Route, RouteHandler } = require('react-router');
 var _ = require('lodash');
 
@@ -52,11 +52,25 @@ var State = React.createClass({
 
 var States = React.createClass({
     getInitialState() {
-        return { states: findStates() };
+        return {
+            states: findStates(),
+            query: ""
+        };
+    },
+
+    handleChange: function() {
+        var q = this.refs.query.getValue();
+        this.setState(_.extend(this.state, { query: q }));
     },
 
     render() {
-        var links = this.state.states.map(state => {
+
+        var q = this.state.query.toLowerCase();
+        var states = _.isEmpty(this.state.query)
+            ? this.state.states
+            : _.filter(this.state.states, s =>  _.contains(s.name.toLowerCase(), q));
+
+        var links = states.map(state => {
             return (
                 <li key={state.abbr}>
                     <Link to="state" params={{ abbr: state.abbr }}>
@@ -65,9 +79,16 @@ var States = React.createClass({
                 </li>
             );
         });
+
         var title = (
-            <PanelTitle title='hiya'>
-                <Button bsSize='xsmall'>Extra small button</Button>
+            <PanelTitle title='States'>
+                <Input
+                    type='search'
+                    className='panel-heading-input'
+                    value={this.state.query}
+                    onChange={this.handleChange}
+                    placeholder='Search'
+                    ref='query'/>
             </PanelTitle>);
 
         return (

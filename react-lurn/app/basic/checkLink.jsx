@@ -7,4 +7,4 @@ var CheckLink = React.createClass({
     }
 });
 
-module.exports=CheckLink;
+module.exports = CheckLink;
