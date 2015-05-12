@@ -21,7 +21,7 @@ module.exports = {
         loaders: [
             { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
             { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
-            { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+            { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff2" },
             { test: /\.css$/, loader: "style!css" },
             { test: /\.jsx?$/, loader: 'babel', exclude : [nodeModulesDir] },
             { test : /\.scss$/, loader: 'style!css!sass' }
