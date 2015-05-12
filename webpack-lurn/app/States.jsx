@@ -7,7 +7,7 @@ var { PanelTitle } = require('./BootstrapExtras.jsx');
 
 var StateIndex = React.createClass({
     hello() {
-        alert("Hello");
+        alert("Dismiss clicked !");
     },
     render() {
         return (
