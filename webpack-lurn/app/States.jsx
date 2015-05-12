@@ -5,7 +5,6 @@ var _ = require('lodash');
 
 var { PanelTitle } = require('./BootstrapExtras.jsx');
 
-
 var StateIndex = React.createClass({
     hello() {
         alert("Hello");
@@ -15,18 +14,6 @@ var StateIndex = React.createClass({
             <Alert bsStyle='warning' onDismiss={this.hello}>
                 <p>Select a state from the left please</p>
             </Alert>
-        );
-    }
-});
-
-// TODO: unused ?
-var StatesHeader = React.createClass({
-    render() {
-        return (
-            <div>
-                <span>States</span>
-                <Button bsSize='xsmall' className='pull-right'>hello</Button>
-            </div>
         );
     }
 });
