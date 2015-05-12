@@ -19,6 +19,7 @@ var StateIndex = React.createClass({
     }
 });
 
+// TODO: unused ?
 var StatesHeader = React.createClass({
     render() {
         return (
