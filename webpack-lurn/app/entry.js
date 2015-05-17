@@ -8,6 +8,7 @@ var { Button, Grid, Jumbotron } = require('react-bootstrap');
 var NavigationHeader = require('./NavigationHeader.jsx');
 var NotFound = require("./NotFound.jsx");
 var { StatesRoutes } = require("./States.jsx");
+var { WidgetRoutes } = require("./Widgets.jsx");
 
 var { DefaultRoute, Link, NotFoundRoute, Redirect, Route, RouteHandler } = Router;
 
@@ -42,6 +43,7 @@ var routes = (
         <DefaultRoute handler={Index} />
         <NotFoundRoute handler={NotFound} />
         {StatesRoutes}
+        {WidgetRoutes}
         <Redirect from="places" to="states" />
     </Route>
 );

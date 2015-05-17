@@ -99,7 +99,7 @@ var States = React.createClass({
 var StatesRoutes = (
     <Route name='states' path='states' handler={States}>
         <DefaultRoute handler={StateIndex} />
-        <Route name='state' path="state/:abbr" handler={State} />
+        <Route name='state' path='state/:abbr' handler={State} />
     </Route>
 );
 

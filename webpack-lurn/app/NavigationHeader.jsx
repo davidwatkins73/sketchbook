@@ -7,7 +7,7 @@ var NavigationHeader = React.createClass({
         return (
             <Navbar staticTop brand={<a href="#">Project X</a>}>
                 <Nav>
-                    <NavItemLink eventKey={1} to='/'>Widgets</NavItemLink>
+                    <NavItemLink eventKey={1} to='widgets'>Widgets</NavItemLink>
                     <NavItemLink eventKey={2} to='states'>States</NavItemLink>
                     <DropdownButton eventKey={3} title='Stuff'>
                         <MenuItem eventKey='1'>Action</MenuItem>
