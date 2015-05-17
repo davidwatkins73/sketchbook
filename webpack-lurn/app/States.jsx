@@ -104,7 +104,7 @@ var StatesRoutes = (
 );
 
 module.exports = {
-    StatesRoutes : StatesRoutes
+    routes : StatesRoutes
 };
 
 

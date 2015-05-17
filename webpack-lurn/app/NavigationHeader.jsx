@@ -9,7 +9,8 @@ var NavigationHeader = React.createClass({
                 <Nav>
                     <NavItemLink eventKey={1} to='widgets'>Widgets</NavItemLink>
                     <NavItemLink eventKey={2} to='states'>States</NavItemLink>
-                    <DropdownButton eventKey={3} title='Stuff'>
+                    <NavItemLink eventKey={3} to='todos'>Todos</NavItemLink>
+                    <DropdownButton eventKey={4} title='Stuff'>
                         <MenuItem eventKey='1'>Action</MenuItem>
                         <MenuItem eventKey='2'>Another action</MenuItem>
                         <MenuItem eventKey='3'>Something else here</MenuItem>

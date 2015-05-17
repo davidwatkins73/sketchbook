@@ -7,8 +7,9 @@ var { Button, Grid, Jumbotron } = require('react-bootstrap');
 
 var NavigationHeader = require('./NavigationHeader.jsx');
 var NotFound = require("./NotFound.jsx");
-var { StatesRoutes } = require("./States.jsx");
-var { WidgetRoutes } = require("./Widgets.jsx");
+var { routes : StatesRoutes } = require("./States.jsx");
+var { routes : WidgetRoutes } = require("./Widgets.jsx");
+var { routes : TodoRoutes } = require('./todo/Todo.jsx');
 
 var { DefaultRoute, Link, NotFoundRoute, Redirect, Route, RouteHandler } = Router;
 
@@ -42,8 +43,9 @@ var routes = (
     <Route handler={App}>
         <DefaultRoute handler={Index} />
         <NotFoundRoute handler={NotFound} />
-        {StatesRoutes}
-        {WidgetRoutes}
+        { StatesRoutes }
+        { WidgetRoutes }
+        { TodoRoutes }
         <Redirect from="places" to="states" />
     </Route>
 );

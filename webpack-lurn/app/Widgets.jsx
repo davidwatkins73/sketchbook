@@ -3,7 +3,7 @@ var { DefaultRoute, Link, Route, RouteHandler } = require('react-router');
 var { PageHeader, Panel } = require('react-bootstrap');
 
 const headline = (
-    <PageHeader>Widgets and Doohickeys <small>With which to charm and delight</small></PageHeader>
+    <PageHeader>Widgets and Doo-hickeys <small>With which to charm and delight</small></PageHeader>
 );
 
 var SlopeDemo = React.createClass({
@@ -17,7 +17,10 @@ var SlopeDemo = React.createClass({
 var SlopeGraph = React.createClass({
 
     render() {
-        return (<svg><circle cx='10' cy='10' r='10' fill='green'></circle> </svg>);
+        return (
+            <svg>
+                <circle cx='10' cy='10' r='10' fill='green'></circle>
+            </svg>);
     }
 });
 
@@ -43,4 +46,4 @@ var WidgetRoutes = (
     </Route>
 );
 
-module.exports = { WidgetRoutes };
+module.exports = { routes : WidgetRoutes };
