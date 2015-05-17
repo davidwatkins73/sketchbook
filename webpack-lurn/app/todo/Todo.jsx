@@ -8,7 +8,7 @@ var { PanelTitle } = require('../BootstrapExtras.jsx');
 var { Actions : TodoActions, Store: TodoStore } = require("./TodoStore.js");
 
 
-var TodoIndex = React.createClass({
+var TodoPanel = React.createClass({
 
     mixins: [Reflux.connect(TodoStore, "todos")],
 
@@ -18,14 +18,15 @@ var TodoIndex = React.createClass({
 
 
     render() {
-
         var todos = this.state.todos;
         var total = todos.length;
         var open = total - _.filter(todos, 'complete').length;
 
         var title = (
             <PanelTitle title='Todos'>
-                <Button onClick={this.clear} bsStyle='warning' bsSize='xsmall'>Clear completed</Button>
+                <Button onClick={this.clear}
+                        bsStyle='warning'
+                        bsSize='xsmall'>Clear completed</Button>
                 &nbsp;
                 <Badge title='Open / Total' >{open} / {total}</Badge>
             </PanelTitle>);
@@ -124,17 +125,22 @@ var TodoItem = React.createClass({
     render() {
         return (
             <div>
-                <Input onClick={this.click} type='checkbox' checked={this.props.complete} label={this.props.label}/>
+                <Input readOnly
+                       onClick={this.click}
+                       type='checkbox'
+                       checked={this.props.complete}
+                       label={this.props.label}/>
             </div>
         );
     }
 });
 
 var TodoRoutes = (
-    <Route name='todos' path='todos' handler={TodoIndex}>
+    <Route name='todos' path='todos' handler={TodoPanel}>
     </Route>
 );
 
 module.exports = {
-    routes: TodoRoutes
+    routes: TodoRoutes,
+    TodoPanel
 };

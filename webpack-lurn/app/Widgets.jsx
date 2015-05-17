@@ -1,6 +1,7 @@
 var React = require('react');
 var { DefaultRoute, Link, Route, RouteHandler } = require('react-router');
 var { PageHeader, Panel } = require('react-bootstrap');
+var { TodoPanel } = require('./todo/Todo.jsx');
 
 const headline = (
     <PageHeader>Widgets and Doo-hickeys <small>With which to charm and delight</small></PageHeader>
@@ -35,6 +36,7 @@ var Widgets = React.createClass({
                     </ul>
                 </Panel>
                 <RouteHandler/>
+                <TodoPanel/>
             </div>
         );
     }

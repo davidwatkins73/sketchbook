@@ -10,6 +10,12 @@ var Actions = Reflux.createActions([
 
 
 var Store = Reflux.createStore( {
+    items : [
+        {id: 1, label: 'aardvark', complete: false},
+        {id: 2, label: 'bear', complete: true},
+        {id: 3, label: 'cobra', complete: false}
+    ],
+
     listenables : [Actions],
     onAdd(task) {
         var item = {
@@ -33,12 +39,6 @@ var Store = Reflux.createStore( {
         this.trigger(this.items);
     },
     getInitialState: function() {
-        this.items = [
-            {id: 1, label: 'aardvark', complete: false},
-            {id: 2, label: 'bear', complete: true},
-            {id: 3, label: 'cobra', complete: false}
-        ];
-
         return this.items;
     }
 });
