@@ -51,7 +51,6 @@ var TodoPanel = React.createClass({
 
 var NewTodoItemForm  = React.createClass({
     getInitialState() {
-
         return {
             newItemDescription : ''
         }
@@ -96,7 +95,6 @@ var NewTodoItemForm  = React.createClass({
 });
 var TodoList = React.createClass({
     render() {
-
         var listGroupItems = _.chain(this.props.items)
             .sortBy('label')
             .map(item => (
@@ -118,7 +116,6 @@ var TodoList = React.createClass({
 });
 
 var TodoItem = React.createClass({
-
     click() {
         TodoActions.toggle(this.props.id);
     },
