@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var React = require('react');
 var Reflux = require('reflux');
-var { Badge, Button, Col, Input, ListGroup, ListGroupItem, Panel, Row } = require('react-bootstrap');
+var { Badge, Button, ButtonInput, Col, Input, ListGroup, ListGroupItem, Panel, Row } = require('react-bootstrap');
 var { DefaultRoute, Link, Route, RouteHandler } = require('react-router');
 
 var { PanelTitle } = require('../BootstrapExtras.jsx');
@@ -15,6 +15,7 @@ var TodoIndex = React.createClass({
     clear() {
         TodoActions.clearCompleted();
     },
+
 
     render() {
 
@@ -31,17 +32,67 @@ var TodoIndex = React.createClass({
 
 
         return (
-            <Row>
-                <Col sm={12}>
-                    <Panel header={title}>
+            <Panel header={title}>
+                <Row>
+                    <Col sm={12}>
                         <TodoList items={todos}/>
-                    </Panel>
-                </Col>
-            </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={10}>
+                        <NewTodoItemForm/>
+                    </Col>
+                </Row>
+            </Panel>
         );
     }
 });
 
+var NewTodoItemForm  = React.createClass({
+    getInitialState() {
+
+        return {
+            newItemDescription : ''
+        }
+    },
+
+    updateForm() {
+        this.setState({
+            newItemDescription : this.refs.newItemField.getValue()
+        });
+    },
+
+    add() {
+        if (this.isValid()) {
+            TodoActions.add(this.state.newItemDescription);
+            this.setState({
+                newItemDescription: ''
+            });
+        }
+    },
+
+    isValid() {
+        return this.state.newItemDescription.length > 0;
+    },
+
+    render() {
+        var enabled = this.isValid();
+        return (
+            <form onSubmit={this.add}>
+                <Input onChange={this.updateForm}
+                       value={this.state.newItemDescription}
+                       ref='newItemField'
+                       label='Add todo'
+                       type='text'
+                       placeholder='Item description...'></Input>
+                <ButtonInput bsSize="small"
+                             bsStyle="primary"
+                             onClick={this.add}
+                             disabled={! enabled}>Add</ButtonInput>
+            </form>
+        );
+    }
+});
 var TodoList = React.createClass({
     render() {
 
@@ -84,10 +135,6 @@ var TodoRoutes = (
     </Route>
 );
 
-
-window.act = TodoActions;
-window.store = TodoStore;
-
 module.exports = {
     routes: TodoRoutes
-}
+};
