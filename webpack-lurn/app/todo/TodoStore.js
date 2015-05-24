@@ -10,35 +10,39 @@ var Actions = Reflux.createActions([
 
 
 var Store = Reflux.createStore( {
-    items : [
-        {id: 1, label: 'aardvark', complete: false},
-        {id: 2, label: 'bear', complete: true},
-        {id: 3, label: 'cobra', complete: false}
-    ],
-
     listenables : [Actions],
+    COUNTER: 0,
+    KEY: 'sketchbook.todo',
+    write() {
+        var json = JSON.stringify(this.items);
+        window.localStorage.setItem(this.KEY, json);
+        this.trigger(this.items);
+    },
     onAdd(task) {
         var item = {
             label: task,
-            id: this.items.length + 1,
+            id: ++this.COUNTER,
             complete: false
         };
 
         this.items = _.union(this.items, [item]);
-        this.trigger(this.items);
+        this.write();
     },
     onToggle(id) {
         var item = _.findWhere(this.items, { id });
         if (item) {
             item.complete = ! item.complete ;
-            this.trigger(this.items);
+            this.write();
         }
     },
     onClearCompleted() {
         this.items = _.reject(this.items, 'complete');
-        this.trigger(this.items);
+        this.write();
     },
     getInitialState: function() {
+        var json = window.localStorage.getItem(this.KEY) || '[]';
+        this.items = JSON.parse(json);
+        this.COUNTER = this.items.length;
         return this.items;
     }
 });
