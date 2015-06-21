@@ -39,7 +39,7 @@ var routes = (
     <Route handler={App}>
         <DefaultRoute handler={Index} />
         <NotFoundRoute handler={NotFound} />
-        {StatesRoutes}
+        { StatesRoutes }
         <Redirect from="places" to="states" />
     </Route>
 );
