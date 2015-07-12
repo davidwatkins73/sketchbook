@@ -1,7 +1,7 @@
-let React = require('react');
-let { Card, CardHeader, CardMedia, CardTitle, CardActions, FlatButton, CardText, Avatar} = require('material-ui');;
+import React from 'react';
+import { Card, CardHeader, CardMedia, CardTitle, CardActions, FlatButton, CardText, Avatar} from 'material-ui';
 
-let AnotherComponent = React.createClass({
+class AnotherComponent extends React.Component{
     render() {
         return (
 
@@ -29,8 +29,9 @@ let AnotherComponent = React.createClass({
                     Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
                 </CardText>
             </Card>
-        )
+        );
     }
-});
+}
 
-module.exports = AnotherComponent;
+
+export default AnotherComponent;

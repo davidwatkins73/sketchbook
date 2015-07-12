@@ -1,5 +1,5 @@
-let Rx = require('rx');
-let React = require("react");
+import Rx from 'rx';
+import React from "react";
 
 let stream = Rx.Observable.interval(1000).map(function (interval) {
     return {
@@ -7,30 +7,30 @@ let stream = Rx.Observable.interval(1000).map(function (interval) {
     };
 });
 
-let MyComponent = React.createClass({
+class MyComponent extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            secondsElapsed : 0
+        };
+    }
 
     componentWillMount() {
         console.log("mounting timer")
         this.subscription = stream.subscribe(x => this.setState(x))
-    },
+    }
 
     componentWillUnmount() {
         console.log("unmount")
         this.subscription.dispose();
-    },
-
-    getInitialState() {
-        return {
-            secondsElapsed : 0
-        };
-    },
+    }
 
     render() {
         return (
             <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
         );
     }
-})
+}
 
 
-module.exports = MyComponent;
+export default MyComponent;
