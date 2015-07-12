@@ -1,11 +1,10 @@
 import React from 'react';
 import ThemeToggle from './ThemeToggle.jsx';
-import _ from 'lodash';
 import mui from 'material-ui';
 import MyComponent from './MyComponent.jsx';
 import AnotherComponent from './AnotherComponent.jsx';
 import { bus, Actions } from './EventSys';
-let { AppBar, RaisedButton, Checkbox } = mui;
+let { AppBar, RaisedButton } = mui;
 let ThemeManager = new mui.Styles.ThemeManager();
 
 

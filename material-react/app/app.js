@@ -1,13 +1,6 @@
 import React from 'react';
-import ThemeToggle from './ThemeToggle.jsx';
-import _ from 'lodash';
-import mui from 'material-ui';
-import MyComponent from './MyComponent.jsx';
-import AnotherComponent from './AnotherComponent.jsx';
 import { bus, Actions } from './EventSys';
 import SomeAwesomeComponent from './SomeAwesomeComponent.jsx';
-let { AppBar, RaisedButton, Checkbox } = mui;
-let ThemeManager = new mui.Styles.ThemeManager();
 
 //
 //let Router = require('react-router');
