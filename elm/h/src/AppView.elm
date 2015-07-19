@@ -1,12 +1,14 @@
 module AppView where
 
-import Html exposing (Html, button, div, h1, span, text)
+import Html exposing (Html, Attribute, button, div, h1, h2, span, text)
+import Html.Attributes exposing (style)
 import Html.Events exposing (onClick)
 import StartApp
 import Signal
 import Debug exposing (log)
 import Http
 import Result
+import Maybe exposing (Maybe)
 import Task exposing (Task, mapError, andThen, fail)
 import Json.Decode as Json exposing ((:=), succeed)
 
@@ -19,9 +21,9 @@ query =
   Signal.mailbox Clear
 
 
-results : Signal.Mailbox (Result String App)
+results : Signal.Mailbox (Result String (Maybe App))
 results =
-  Signal.mailbox (Err "Problemo")
+  Signal.mailbox (Ok Nothing)
 
 
 port requests : Signal (Task x ())
@@ -30,13 +32,24 @@ port requests =
     |> Signal.map (\task -> Task.toResult task `andThen` Signal.send results.address)
 
 
-handleAction : Action -> Task String App
+handleAction : Action -> Task String (Maybe App)
 handleAction a =
     case a of
         Clear ->
-            fail "Cleared"
+            Task.succeed Nothing
         Load id ->
-            Task.succeed (mkUrl id) `andThen` (mapError (always "Doom!") << Http.get parseApp)
+            Task.succeed (mkUrl id)
+            `andThen`
+            fetchApp
+            `andThen`
+            \x ->  Task.succeed ( Just x )
+
+
+fetchApp : String -> Task String App
+fetchApp =
+    mapError toString
+        << Http.get parseApp
+
 
 
 parseApp : Json.Decoder (App)
@@ -60,7 +73,7 @@ mkUrl s =
 
 -- VIEW
 
-view : Action -> Result String App -> Html
+view : Action -> Result String (Maybe App) -> Html
 view q r =
     let buttons =
             div []
@@ -68,23 +81,42 @@ view q r =
                     [onClick query.address Clear ]
                     [text "Clear"]
                 , button
-                    [onClick query.address (Load "a1") ]
-                    [text "Load"]
+                    [onClick query.address (Load "app1") ]
+                    [text "Load 1"]
+                , button
+                    [onClick query.address (Load "app2") ]
+                    [text "Load 2"]
+                , button
+                    [onClick query.address (Load "bad") ]
+                    [text "Load Bad"]
                 ]
         panel =
             case r of
-                Ok app ->
+                Ok (Just app) ->
                     div []
-                        [ h1 [] [text "Application"]
+                        [ h1 titleStyle [text "Application"]
                         , span [] [text (app.name)]
                         ]
+                Ok (Nothing) ->
+                    text "zzzzz"
                 Err err ->
-                    text err
+                    div []
+                        [ h2 errorStyle [text "Error!"]
+                        , text err
+                        ]
 
 
     in
-        log (toString r) (div [] [ buttons, panel ])
+        div [] [ buttons, panel ]
 
+
+titleStyle : List Attribute
+titleStyle =
+    style [ ("color", "green")] :: []
+
+errorStyle : List Attribute
+errorStyle =
+    style [ ("color", "red")] :: []
 
 -- MODEL
 
