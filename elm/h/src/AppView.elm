@@ -51,7 +51,6 @@ fetchApp =
         << Http.get parseApp
 
 
-
 parseApp : Json.Decoder (App)
 parseApp =
     Json.object3
