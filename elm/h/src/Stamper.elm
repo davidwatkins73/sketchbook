@@ -8,6 +8,7 @@ import List exposing ((::), length)
 import Mouse
 import Signal
 import Window
+import Debug exposing (log)
 
 
 main : Signal Element
@@ -15,9 +16,13 @@ main =
   Signal.map2 renderStamps Window.dimensions clickLocations
 
 
+addClick : (Int, Int) -> List(Int, Int) ->  List(Int, Int)
+addClick v s =  log (toString (v, s)) v::s
+
+
 clickLocations : Signal (List (Int,Int))
 clickLocations =
-  Signal.foldp (::) [] (Signal.sampleOn Mouse.clicks Mouse.position)
+  Signal.foldp addClick [] (Signal.sampleOn Mouse.clicks Mouse.position)
 
 
 renderStamps : (Int,Int) -> List (Int,Int) -> Element
@@ -33,5 +38,5 @@ renderStamps (w,h) locs =
         , show "Click to stamp a pentagon."
         , container 200 200 middle
             <| show
-            <| "                                Bob" ++ toString (length locs)
+            <| "Bob" ++ toString (length locs)
         ]

@@ -26,5 +26,5 @@ displayMario = always "It's a me, mario"
 
 test = route "/blog/mario.html"
 
---main = show test
-main = Signal.map show path
+main = show test
+--main = Signal.map show path
