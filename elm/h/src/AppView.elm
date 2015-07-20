@@ -1,7 +1,7 @@
 module AppView where
 
-import Html exposing (Html, Attribute, button, div, h1, h2, span, text)
-import Html.Attributes exposing (style)
+import Html exposing (Html, Attribute, node, button, div, h1, h2, h4, span, strong, text)
+import Html.Attributes exposing (style, href, rel, class)
 import Html.Events exposing (onClick)
 import StartApp
 import Signal
@@ -93,29 +93,37 @@ view q r =
             case r of
                 Ok (Just app) ->
                     div []
-                        [ h1 titleStyle [text "Application"]
-                        , span [] [text (app.name)]
+                        [ h1 titleStyle [text app.name]
+                        , div [] [text (app.name)]
+                        , div [] [text (app.description)]
                         ]
                 Ok (Nothing) ->
-                    text "zzzzz"
-                Err err ->
                     div []
-                        [ h2 errorStyle [text "Error!"]
+                        [ text "zzzzz"
+                        ]
+                Err err ->
+                    div errorStyle
+                        [ strong [] [text "Error! "]
                         , text err
                         ]
 
 
     in
-        div [] [ buttons, panel ]
+        div [] [ cssLink, buttons, panel ]
 
 
 titleStyle : List Attribute
 titleStyle =
-    style [ ("color", "green")] :: []
+    [ class "page-header" ]
 
 errorStyle : List Attribute
 errorStyle =
-    style [ ("color", "red")] :: []
+    [ class "alert alert-warning"
+    ]
+
+
+cssLink : Html
+cssLink = node "link" [rel "stylesheet", href "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"] []
 
 -- MODEL
 
